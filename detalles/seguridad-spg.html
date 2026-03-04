@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLC530 SPG - Smart Process Gating | Detalle Técnico Mecalux</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mlx: {
+                            blue: '#004b87',
+                            light: '#0072ce',
+                            accent: '#ffb612',
+                            dark: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="../index.html" class="flex items-center gap-2 text-mlx-blue font-bold hover:text-mlx-light transition-colors">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Panel Principal
+            </a>
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-mlx-blue text-white rounded flex items-center justify-center font-bold text-sm">M</div>
+                <span class="font-bold text-slate-400 text-sm tracking-widest uppercase">Mecalux Robotics</span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-r from-mlx-dark to-mlx-blue py-16 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 relative z-10 text-center md:text-left">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="flex-1">
+                    <span class="inline-block py-1 px-3 rounded-full bg-red-500 text-white font-bold text-xs mb-4 uppercase tracking-widest">Seguridad Inteligente</span>
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">MLC530 SPG <br><span class="text-mlx-accent italic">Smart Process Gating</span></h1>
+                    <p class="text-xl text-slate-200 max-w-2xl leading-relaxed">
+                        Revolución en el control de accesos: Paso de mercancía seguro sin necesidad de sensores de muting adicionales.
+                    </p>
+                </div>
+                <div class="w-full md:w-1/3 flex justify-center">
+                    <img src="../img/image_73027d.png" alt="Cortina Óptica MLC530" class="h-80 object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-inner">
+                    <img src="../img/image_73027f.png" alt="Diagrama Smart Process Gating" class="w-full rounded-xl shadow-lg">
+                    <div class="mt-8 flex justify-center gap-8">
+                        <div class="text-center">
+                            <span class="block text-mlx-blue font-bold text-2xl">S1</span>
+                            <span class="text-xs font-bold text-slate-500 uppercase">Señal PLC</span>
+                        </div>
+                        <div class="text-center">
+                            <span class="block text-mlx-blue font-bold text-2xl">S2</span>
+                            <span class="text-xs font-bold text-slate-500 uppercase">Cortina Óptica</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-3xl font-bold text-mlx-dark mb-8">Eficiencia a través de la Simplificación</h2>
+                    
+                    <div class="space-y-8">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 shrink-0 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center">
+                                <i class="fa-solid fa-microchip text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Sin Hardware Adicional</h4>
+                                <p class="text-slate-600">
+                                    No requiere componentes extra para las señales de gating (S1 y S2). El sistema utiliza la lógica del proceso para autorizar el paso.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 shrink-0 bg-blue-100 text-mlx-blue rounded-xl flex items-center justify-center">
+                                <i class="fa-solid fa-screwdriver-wrench text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Reducción de Sensórica Dedicada</h4>
+                                <p class="text-slate-600">
+                                    Supone no tener que instalar sensórica dedicada de muting. Esto elimina puntos de fallo mecánico y desalineaciones por golpes de palets.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 shrink-0 bg-red-100 text-red-600 rounded-xl flex items-center justify-center">
+                                <i class="fa-solid fa-shield-check text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Espacio Optimizado</h4>
+                                <p class="text-slate-600">
+                                    Al eliminar los brazos de muting, se reduce el espacio necesario en el transportador, permitiendo diseños de flujo más compactos y eficientes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 bg-white text-center border-t border-slate-200 text-slate-400 text-xs">
+        &copy; 2026 Mecalux Robotics. Ingeniería de Seguridad en Almacenes Automáticos.
+    </footer>
+
+</body>
+</html>

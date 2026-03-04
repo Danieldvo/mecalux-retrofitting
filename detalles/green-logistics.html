@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Logistics & EffiSRS | Detalle Técnico Mecalux</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mlx: {
+                            blue: '#004b87',
+                            light: '#0072ce',
+                            accent: '#ffb612',
+                            dark: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="../index.html" class="flex items-center gap-2 text-mlx-blue font-bold hover:text-mlx-light transition-colors">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Panel Principal
+            </a>
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-mlx-blue text-white rounded flex items-center justify-center font-bold text-sm">M</div>
+                <span class="font-bold text-slate-400 text-sm tracking-widest uppercase">Mecalux Robotics</span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-r from-mlx-dark to-emerald-900 py-16 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 relative z-10 text-center md:text-left">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="flex-1">
+                    <span class="inline-block py-1 px-3 rounded-full bg-emerald-500 text-white font-bold text-xs mb-4 uppercase tracking-widest">Sostenibilidad Energética</span>
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">Green Logistics <br><span class="text-emerald-400 italic">& EffiSRS</span></h1>
+                    <p class="text-xl text-slate-200 max-w-2xl leading-relaxed">
+                        Transforme la energía de frenado en ahorro directo. Reducción drástica del OPEX mediante tecnología regenerativa de última generación.
+                    </p>
+                </div>
+                <div class="w-full md:w-1/3 flex justify-center">
+                    <div class="bg-white/10 p-6 rounded-3xl backdrop-blur-sm border border-white/20">
+                        <i class="fa-solid fa-leaf text-8xl text-emerald-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-mlx-dark mb-6">Unidad Regenerativa Lenze R75AE</h2>
+                    <p class="text-lg text-slate-600 mb-8">
+                        El núcleo de nuestra solución "Green" es la unidad regenerativa de alto rendimiento que sustituye a las tradicionales resistencias de frenado.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="text-xs font-bold text-slate-400 uppercase">Potencia Nominal DC</span>
+                            <p class="text-xl font-bold text-mlx-blue">26 kW</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="text-xs font-bold text-slate-400 uppercase">Tensión de Red</span>
+                            <p class="text-xl font-bold text-mlx-blue">3 AC 400/480 V</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="text-xs font-bold text-slate-400 uppercase">Protección</span>
+                            <p class="text-xl font-bold text-mlx-blue">IP20</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="text-xs font-bold text-slate-400 uppercase">Peso de Unidad</span>
+                            <p class="text-xl font-bold text-mlx-blue">13.0 Kg</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-emerald-500/20 rounded-full blur-3xl"></div>
+                        <img src="../img/regenerador_lenze.png" alt="Lenze Regenerative Unit" class="relative z-10 w-80 drop-shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 relative">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="flex-1 order-2 lg:order-1">
+                    <h2 class="text-3xl font-bold mb-6">EffiSRS: Algoritmo de Gestión Inteligente</h2>
+                    <p class="text-slate-400 text-lg mb-8 leading-relaxed">
+                        Mientras que el regenerador físico devuelve energía a la red, el sistema <strong>EffiSRS (Efficient Storage Retrieval System)</strong> es el software inteligente que optimiza el consumo interno del transelevador.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4 items-start">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-sync text-xs"></i>
+                            </div>
+                            <p><span class="text-emerald-400 font-bold">Sincronización de Ejes:</span> Coordina los movimientos de elevación y traslación para que la energía generada por el frenado de un eje sea consumida instantáneamente por el otro.</p>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-chart-line text-xs"></i>
+                            </div>
+                            <p><span class="text-emerald-400 font-bold">Suavizado de Picos:</span> Reduce los picos de demanda eléctrica durante el arranque, protegiendo la infraestructura eléctrica de la planta.</p>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-temperature-arrow-down text-xs"></i>
+                            </div>
+                            <p><span class="text-emerald-400 font-bold">Reducción Térmica:</span> Al no usar resistencias, se elimina la disipación de calor en el armario eléctrico, reduciendo la necesidad de refrigeración.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex-1 order-1 lg:order-2">
+                    <div class="relative p-8 bg-white/5 rounded-3xl border border-white/10">
+                        <h4 class="text-center font-bold mb-6 text-emerald-400 uppercase tracking-widest text-sm">Flujo Energético Optimizada</h4>
+                        <div class="flex justify-between items-center relative">
+                            <div class="text-center">
+                                <i class="fa-solid fa-arrow-up-down text-4xl mb-2"></i>
+                                <span class="block text-xs">EJE ELEVACIÓN</span>
+                            </div>
+                            <div class="h-0.5 flex-1 bg-gradient-to-r from-emerald-500 to-emerald-400 mx-4 relative">
+                                <div class="absolute inset-0 animate-pulse bg-emerald-300 blur-sm"></div>
+                            </div>
+                            <div class="text-center">
+                                <i class="fa-solid fa-arrows-left-right text-4xl mb-2"></i>
+                                <span class="block text-xs">EJE TRASLACIÓN</span>
+                            </div>
+                        </div>
+                        <p class="mt-8 text-center text-xs text-slate-500 italic">Intercambio de energía en tiempo real mediante bus de continua.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 text-center bg-white">
+        <h3 class="text-2xl font-bold text-mlx-dark mb-6">Reduzca su huella de carbono y sus costes operativos</h3>
+        <a href="../index.html#contacto" class="inline-block bg-mlx-blue hover:bg-mlx-light text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl transition-all hover:scale-105">
+            Solicitar Auditoría Energética
+        </a>
+    </footer>
+
+</body>
+</html>

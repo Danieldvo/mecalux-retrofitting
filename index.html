@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mecalux | Soluciones de Retrofitting SCx</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js para visualización de datos de negocio -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Configuración Tailwind personalizada para colores corporativos -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mlx: {
+                            blue: '#004b87',    // Azul Mecalux
+                            light: '#0072ce',   // Azul Claro
+                            accent: '#ffb612',  // Amarillo/Naranja Mecalux
+                            dark: '#0f172a'     // Slate 900
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos base y animaciones */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(0, 75, 135, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #0072ce;
+        }
+
+        /* Contenedor de gráficos obligatorio */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    
+    <!-- Chosen Palette: Corporate Trust (Mecalux Blue, Navy, White, with Warm Amber highlights) -->
+    <!-- Application Structure Plan: 
+         1. Hero: High-impact value proposition (Extend lifecycle, maximize ROI).
+         2. Strategic Narrative: The "Why" (CAPEX vs OPEX, downtime risks).
+         3. Solutions Portfolio: The 5 technical upgrades translated to business benefits (Cards).
+         4. Business Impact (Chart.js): Visualizing ROI and Productivity gains.
+         5. Methodology: Seamless integration without stopping operations.
+         6. Call to Action: Request an audit.
+    -->
+    <!-- Visualization & Content Choices:
+         - Business Impact: Chart.js Line/Bar combination to show OPEX reduction and Productivity increase over time after retrofitting.
+         - Solutions: Interactive cards with FontAwesome icons replacing technical diagrams to focus on executive summaries.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-mlx-light selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur shadow-sm border-b border-slate-200 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-mlx-blue text-white rounded flex items-center justify-center font-bold text-xl">M</div>
+                    <span class="font-bold text-2xl text-mlx-dark tracking-tight">MECALUX <span class="text-mlx-light font-light">Robotics</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#estrategia" class="text-sm font-semibold text-slate-600 hover:text-mlx-blue transition-colors">Visión Estratégica</a>
+                    <a href="#soluciones" class="text-sm font-semibold text-slate-600 hover:text-mlx-blue transition-colors">Portafolio de Mejoras</a>
+                    <a href="#impacto" class="text-sm font-semibold text-slate-600 hover:text-mlx-blue transition-colors">Impacto de Negocio</a>
+                </div>
+                <div>
+                    <a href="#contacto" class="bg-mlx-blue hover:bg-mlx-light text-white px-6 py-2.5 rounded-md font-semibold text-sm transition-colors shadow-lg shadow-mlx-blue/30">
+                        Solicitar Auditoría
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!--  -->
+            <div class="w-full h-full bg-slate-900 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');"></div>
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-mlx-accent/20 text-mlx-accent font-semibold text-sm tracking-wider mb-6 border border-mlx-accent/30 fade-in-up">
+                DIVISIÓN DE CUSTOMER SERVICE
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6 fade-in-up delay-100">
+                Modernice su Logística.<br>
+                <span class="text-mlx-light">Sin Detener su Negocio.</span>
+            </h1>
+            <p class="mt-4 text-xl text-slate-300 max-w-3xl mx-auto mb-10 fade-in-up delay-200">
+                El programa de <strong class="text-white">Retrofitting Estratégico SCx</strong> actualiza el "sistema nervioso" de sus transelevadores. Prolongue la vida útil de sus activos 15 años más, reduzca el Opex energético y elimine los tiempos de inactividad imprevistos.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in-up delay-300">
+                <a href="#soluciones" class="bg-mlx-accent hover:bg-yellow-400 text-mlx-dark px-8 py-4 rounded-md font-bold text-lg transition-colors shadow-lg shadow-mlx-accent/20">
+                    Explorar Soluciones
+                </a>
+                <a href="#impacto" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-8 py-4 rounded-md font-semibold text-lg transition-colors backdrop-blur">
+                    Ver ROI y Datos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Vision Section -->
+    <section id="estrategia" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-mlx-dark mb-4">¿Por qué invertir en Retrofitting?</h2>
+                <div class="w-24 h-1 bg-mlx-light mx-auto rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 mx-auto bg-slate-100 rounded-full flex items-center justify-center mb-6 text-mlx-blue text-2xl">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Maximización del CAPEX</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Actualizar la electrónica de control y sensores requiere solo una fracción de la inversión frente a adquirir maquinaria nueva, apalancando la robusta estructura mecánica existente.
+                    </p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 mx-auto bg-slate-100 rounded-full flex items-center justify-center mb-6 text-mlx-blue text-2xl">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Mitigación de Riesgos</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Eliminación del riesgo por obsolescencia de componentes electrónicos (PLC antiguos, relés mecánicos) que podrían causar paradas de planta de varias semanas.
+                    </p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 mx-auto bg-slate-100 rounded-full flex items-center justify-center mb-6 text-mlx-blue text-2xl">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Sostenibilidad (ESG)</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Alineación con los objetivos de descarbonización corporativos mediante la integración de hardware de regeneración de energía eléctrica a la red.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Portfolio -->
+
+                
+            <section id="soluciones" class="py-24 bg-slate-50 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-16">
+            <span class="text-mlx-light font-bold tracking-wider uppercase text-sm">Ingeniería de Retrofitting</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-mlx-dark mt-2 mb-4">Actualizaciones de Alto Impacto SCx</h2>
+            <p class="text-slate-600 text-lg max-w-3xl">Pulsa sobre cada solución para ver imágenes reales y detalles técnicos de la implementación.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <a href="detalles/green-logistics.html" class="bg-white rounded-xl p-8 border border-slate-200 card-hover group block">
+                <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center text-xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-mlx-blue transition-colors">Green Logistics & EffiSRS</h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-4">Módulo de regeneración de energía que sustituye resistencias térmicas. Ahorro de hasta el 30% en consumo eléctrico.</p>
+                <span class="text-mlx-light font-bold text-xs flex items-center gap-2">VER DETALLE TÉCNICO <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+            </a>
+
+            <a href="detalles/seguridad-spg.html" class="bg-white rounded-xl p-8 border border-slate-200 card-hover group block">
+                <div class="w-12 h-12 bg-red-100 text-red-600 rounded-lg flex items-center justify-center text-xl mb-6 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-mlx-blue transition-colors">Seguridad MLC530 SPG</h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-4">Smart Process Gating: elimina la necesidad de sensores de muting físicos (S1/S2). Menos hardware, menos averías.</p>
+                <span class="text-mlx-light font-bold text-xs flex items-center gap-2">VER DETALLE TÉCNICO <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+            </a>
+
+            <a href="detalles/control-galibo.html" class="bg-white rounded-xl p-8 border border-slate-200 card-hover group block">
+                <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center text-xl mb-6 group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-arrows-left-right-to-line"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-mlx-blue transition-colors">Gálibo Rack LS/LE 25CI</h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-4">Detección de gálibo por nivel de almacenaje. Inmune a plásticos sueltos de enfardado, evitando paradas falsas.</p>
+                <span class="text-mlx-light font-bold text-xs flex items-center gap-2">VER DETALLE TÉCNICO <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+            </a>
+
+            <a href="detalles/camara-ips.html" class="bg-white rounded-xl p-8 border border-mlx-blue/30 card-hover lg:col-span-2 group block">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex-1">
+                        <div class="w-12 h-12 bg-blue-100 text-mlx-blue rounded-lg flex items-center justify-center text-xl mb-6 group-hover:bg-mlx-blue group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-camera"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-mlx-blue transition-colors">Centraje mediante Cámara IPS</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Sustituye las fotocélulas de centraje tradicionales en el eje Y. Resuelve desalineaciones en ubicaciones de <strong>1ra y 2da profundidad</strong>.</p>
+                        <span class="text-mlx-light font-bold text-xs flex items-center gap-2">EXPLORAR CASO REAL <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+                    </div>
+                    <div class="hidden md:flex w-48 bg-slate-900 rounded border border-slate-700 items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-x-0 top-1/2 h-0.5 bg-red-500 shadow-[0_0_8px_red] animate-pulse"></div>
+                        <i class="fa-solid fa-expand text-white/20 text-4xl"></i>
+                    </div>
+                </div>
+            </a>
+
+            <a href="detalles/posicionamiento-bps.html" class="bg-white rounded-xl p-8 border border-slate-200 card-hover group block">
+                <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center text-xl mb-6 group-hover:bg-sky-600 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-barcode"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-mlx-blue transition-colors">Posicionamiento BPS</h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-4">Posicionamiento absoluto mediante banda láser. Elimina tiempos de referenciado y errores de lectura mecánica.</p>
+                <span class="text-mlx-light font-bold text-xs flex items-center gap-2">VER DETALLE TÉCNICO <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+            </a>
+        </div>
+    </div>
+</section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Impact Section (Data Viz) -->
+    <section id="impacto" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <div>
+                    <h2 class="text-3xl font-bold text-mlx-dark mb-6">El Impacto en la Cuenta de Resultados</h2>
+                    <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                        Un proyecto de modernización transforma un centro de costes creciente (mantenimiento correctivo) en un activo altamente predecible y eficiente. 
+                    </p>
+                    
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 mt-1">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-slate-800">Disminución radical del OPEX</h4>
+                                <p class="text-slate-600 text-sm mt-1">Ahorros directos en consumo eléctrico mensual y eliminación de recambios mecánicos de emergencia (premium costs).</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-mlx-light/20 flex items-center justify-center text-mlx-blue mt-1">
+                                <i class="fa-solid fa-arrow-up"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-slate-800">Incremento del OEE</h4>
+                                <p class="text-slate-600 text-sm mt-1">La disponibilidad del sistema (Overall Equipment Effectiveness) se maximiza gracias al diagnóstico remoto de fallos en segundos.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Interactive Chart Container -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-lg">
+                    <h3 class="text-center font-bold text-slate-700 mb-2">Proyección Financiera: Efecto Retrofitting</h3>
+                    <div class="chart-container">
+                        <canvas id="roiChart"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-slate-400 mt-4">* Datos ilustrativos basados en medias de modernización SCx 3G.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+            <section id="mantenimiento" class="py-24 bg-white">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="bg-mlx-dark rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-8 opacity-10">
+                                <i class="fa-solid fa-scale-balanced text-9xl"></i>
+                            </div>
+                            
+                            <div class="relative z-10">
+                                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+                                    <div class="max-w-2xl">
+                                        <h2 class="text-3xl md:text-4xl font-bold mb-2">Mantenimiento de Seguridad</h2>
+                                        <p class="text-mlx-accent font-semibold flex items-center gap-2 uppercase tracking-widest text-sm">
+                                            <i class="fa-solid fa-circle-exclamation"></i> Es una Obligación Legal (UNE-EN 528)
+                                        </p>
+                                    </div>
+                                    <div class="bg-white/10 backdrop-blur px-6 py-3 rounded-xl border border-white/20 text-center">
+                                        <span class="text-xs uppercase tracking-widest text-slate-300 block mb-1">Normativa Vigente</span>
+                                        <p class="text-sm font-bold font-mono">Art. 6.7.3.1 / 6.7.2.2 / 6.7.2.3</p>
+                                    </div>
+                                </div>
+
+                                <div class="mb-12">
+                                    <h3 class="text-lg font-bold mb-6 text-slate-300 uppercase tracking-wider italic">Cada revisión incluye obligatoriamente:</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                        <div class="flex bg-white/5 rounded-xl overflow-hidden border border-white/10 group hover:border-mlx-light transition-colors">
+                                            <div class="bg-mlx-light w-12 flex items-center justify-center font-bold text-xl shrink-0">01</div>
+                                            <div class="p-4">
+                                                <h4 class="font-bold text-sm mb-1 uppercase">Inspección Estructural</h4>
+                                                <p class="text-[11px] text-slate-400 leading-tight">Inspección visual y ensayo de carga nominal/adicional para verificar la integridad estructural.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex bg-white/5 rounded-xl overflow-hidden border border-white/10 group hover:border-mlx-light transition-colors">
+                                            <div class="bg-mlx-light w-12 flex items-center justify-center font-bold text-xl shrink-0">02</div>
+                                            <div class="p-4">
+                                                <h4 class="font-bold text-sm mb-1 uppercase">Validación de Sensores</h4>
+                                                <p class="text-[11px] text-slate-400 leading-tight">Cada dispositivo de seguridad y protección debe probarse operativamente de forma individual.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex bg-white/5 rounded-xl overflow-hidden border border-white/10 group hover:border-mlx-light transition-colors">
+                                            <div class="bg-mlx-light w-12 flex items-center justify-center font-bold text-xl shrink-0">03</div>
+                                            <div class="p-4">
+                                                <h4 class="font-bold text-sm mb-1 uppercase">Prueba Anticaída</h4>
+                                                <p class="text-[11px] text-slate-400 leading-tight">Activación manual del regulador de sobre-velocidad para testear el sistema anticaída.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex bg-white/5 rounded-xl overflow-hidden border border-white/10 group hover:border-mlx-light transition-colors">
+                                            <div class="bg-mlx-light w-12 flex items-center justify-center font-bold text-xl shrink-0">04</div>
+                                            <div class="p-4">
+                                                <h4 class="font-bold text-sm mb-1 uppercase">Vida Útil</h4>
+                                                <p class="text-[11px] text-slate-400 leading-tight">Revisión profunda, control y sustitución preventiva de las piezas críticas de desgaste.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center border-t border-white/10 pt-10">
+                                    <div class="lg:col-span-2">
+                                        <p class="text-xl font-medium leading-relaxed italic">
+                                            "¿Quién conoce mejor la máquina que su propio fabricante? Mecalux dispone de las herramientas, la autorización y el conocimiento para cumplir al 100% la norma."
+                                        </p>
+                                    </div>
+                                    <div class="text-center lg:text-right">
+                                        <a href="#contacto" class="inline-flex items-center gap-3 bg-white text-mlx-blue px-8 py-4 rounded-full font-bold text-lg hover:bg-mlx-accent hover:text-mlx-dark transition-all shadow-xl hover:-translate-y-1">
+                                            Solicitar Mantenimiento Oficial <i class="fa-solid fa-chevron-right text-xs"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+    <!-- CTA Section -->
+    <section id="contacto" class="py-20 bg-mlx-dark relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CjxyZWN0IHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0idHJhbnNwYXJlbnQiPjwvcmVjdD4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIgZmlsbD0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjA1KSI+PC9jaXJjbGU+Cjwvc3ZnPg==')] opacity-50"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">¿Listo para auditar su instalación?</h2>
+            <p class="text-xl text-slate-300 mb-10">
+                Nuestros ingenieros evaluarán el estado actual de sus transelevadores y diseñarán un plan de migración tecnológica <strong>sin afectar su flujo logístico diario</strong>.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button class="bg-mlx-accent hover:bg-yellow-400 text-mlx-dark font-bold py-4 px-10 rounded-md text-lg transition-colors shadow-lg shadow-mlx-accent/20">
+                    <i class="fa-solid fa-calendar-check mr-2"></i> Agendar Evaluación Técnica
+                </button>
+                <button class="bg-transparent border-2 border-slate-600 hover:border-slate-400 text-white font-semibold py-4 px-10 rounded-md text-lg transition-colors">
+                    <i class="fa-solid fa-file-pdf mr-2"></i> Descargar Dossier
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 py-10 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center gap-2 mb-4 md:mb-0">
+                <div class="w-8 h-8 bg-mlx-blue text-white rounded flex items-center justify-center font-bold">M</div>
+                <span class="font-bold text-xl text-slate-300">MECALUX</span>
+            </div>
+            <p class="text-slate-500 text-sm">
+                &copy; 2026 Mecalux Robotics. Soluciones de Retrofitting e Ingeniería. Documento confidencial.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript para el gráfico de negocio -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('roiChart').getContext('2d');
+            
+            // Datos del gráfico: Muestra cómo bajan los costes y sube la disponibilidad tras el "Año 0" (Intervención)
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Año -2', 'Año -1', 'Año 0 (Retrofit)', 'Año +1', 'Año +2', 'Año +3'],
+                    datasets: [
+                        {
+                            label: 'Costes Operativos y Mantenimiento (OPEX)',
+                            data: [100, 115, 125, 60, 55, 50], // Sube por averías, cae drásticamente tras retrofit
+                            borderColor: '#ef4444', // Rojo
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.4,
+                            fill: true,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Disponibilidad del Sistema (%)',
+                            data: [92, 88, 85, 98, 99, 99.5], // Cae por obsolescencia, roza el 100% tras retrofit
+                            borderColor: '#10b981', // Verde
+                            backgroundColor: 'transparent',
+                            borderWidth: 3,
+                            borderDash: [5, 5],
+                            tension: 0.4,
+                            pointBackgroundColor: '#10b981',
+                            pointRadius: 6,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#475569',
+                                usePointStyle: true,
+                                padding: 20,
+                                font: { family: 'Inter', size: 13 }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                            titleFont: { family: 'Inter', size: 14 },
+                            bodyFont: { family: 'Inter', size: 13 },
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false, drawBorder: false },
+                            ticks: { color: '#64748b', font: { family: 'Inter', weight: 'bold' } }
+                        },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: { display: true, text: 'Índice de Coste', color: '#ef4444', font: {family: 'Inter'} },
+                            grid: { borderDash: [4, 4], color: '#e2e8f0' },
+                            ticks: { color: '#64748b' },
+                            min: 0
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: { display: true, text: 'Disponibilidad (%)', color: '#10b981', font: {family: 'Inter'} },
+                            grid: { drawOnChartArea: false },
+                            ticks: { color: '#64748b' },
+                            min: 80,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
